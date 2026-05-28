@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { CategoryCard } from "@/components/CategoryCard";
 import { useCategories } from "@/hooks/useCategories";
-import { categoryLabel, sortCategories } from "@/lib/categoryLabels";
+import { sortCategories } from "@/lib/categoryLabels";
 
 export function ProblemsPreview() {
   const { categories, loading, error } = useCategories();
@@ -16,12 +16,12 @@ export function ProblemsPreview() {
               The Library
             </span>
             <h2 className="font-display mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              Green Book problems, organized.
+              <span className="text-gradient-green">Green Book</span> topics
             </h2>
           </div>
           <Link
             to="/dashboard"
-            className="hidden text-sm text-[var(--color-green)] underline-offset-4 hover:underline md:inline"
+            className="hidden text-sm text-gradient-green underline-offset-4 hover:underline md:inline"
           >
             See all
           </Link>
@@ -29,38 +29,23 @@ export function ProblemsPreview() {
 
         {loading && (
           <p className="text-sm text-[var(--color-fg-muted)]">
-            Loading problems...
+            Loading topics...
           </p>
         )}
         {error && (
           <p className="text-sm text-red-400">
-            Could not load problems. Is the backend running on :4000?
+            Could not load topics. Is the backend running on :4000?
           </p>
         )}
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {sorted.map((c, i) => (
-            <motion.div
+            <CategoryCard
               key={c.category}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
-              className="group rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] p-6 transition-colors hover:border-[var(--color-green)]"
-            >
-              <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)]">
-                {c.count} problems
-              </p>
-              <h3 className="font-display mt-2 text-xl font-semibold">
-                {categoryLabel(c.category)}
-              </h3>
-              <Link
-                to={`/dashboard#${c.category}`}
-                className="mt-6 inline-flex text-sm text-[var(--color-green)] underline-offset-4 hover:underline"
-              >
-                Browse
-              </Link>
-            </motion.div>
+              category={c.category}
+              count={c.count}
+              index={i}
+            />
           ))}
         </div>
       </div>

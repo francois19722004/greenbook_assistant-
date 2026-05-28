@@ -33,13 +33,13 @@ export function SplashScreen({ onDone, durationMs = 1700 }: Props) {
             className="flex flex-col items-center"
           >
             <motion.div
-              className="h-[2px] bg-[var(--color-green)]"
+              className="h-[3px] rounded-full bg-gradient-green shadow-[0_0_18px_-2px_rgba(34,224,122,0.7)]"
               initial={{ width: 0 }}
-              animate={{ width: 72 }}
+              animate={{ width: 96 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             />
             <h1 className="font-display mt-6 text-4xl font-semibold tracking-tight text-[var(--color-fg)] md:text-5xl">
-              Greenbook Assistant
+              <span className="text-gradient-green">Greenbook</span> Assistant
             </h1>
             <motion.p
               className="mt-3 text-sm uppercase tracking-widest text-[var(--color-fg-muted)]"

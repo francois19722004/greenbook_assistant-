@@ -4,6 +4,7 @@ import {
   ThreadPrimitive,
 } from "@assistant-ui/react";
 import { SendHorizonal } from "lucide-react";
+import { MarkdownMessage } from "./MarkdownMessage";
 import { cn } from "@/lib/utils";
 
 export function Thread() {
@@ -16,7 +17,7 @@ export function Thread() {
               Ask anything about this problem.
             </p>
             <p className="mt-2 text-sm">
-              The assistant already has the problem and the reference solution.
+              The tutor will guide you. It will not just hand you the answer.
             </p>
           </div>
         </ThreadPrimitive.Empty>
@@ -24,6 +25,10 @@ export function Thread() {
         <ThreadPrimitive.Messages
           components={{ UserMessage, AssistantMessage }}
         />
+
+        <ThreadPrimitive.If running>
+          <TypingIndicator />
+        </ThreadPrimitive.If>
       </ThreadPrimitive.Viewport>
 
       <Composer />
@@ -34,7 +39,7 @@ export function Thread() {
 function UserMessage() {
   return (
     <MessagePrimitive.Root className="mx-auto flex w-full max-w-3xl justify-end py-3">
-      <div className="max-w-[75%] rounded-lg bg-[var(--color-green)] px-4 py-2 text-[var(--color-bg)]">
+      <div className="max-w-[75%] rounded-lg bg-gradient-green px-4 py-2 text-[var(--color-bg)] shadow-[0_8px_24px_-12px_rgba(34,224,122,0.5)]">
         <MessagePrimitive.Content />
       </div>
     </MessagePrimitive.Root>
@@ -44,10 +49,29 @@ function UserMessage() {
 function AssistantMessage() {
   return (
     <MessagePrimitive.Root className="mx-auto flex w-full max-w-3xl py-3">
-      <div className="max-w-[85%] whitespace-pre-wrap rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] px-4 py-2 text-[var(--color-fg)]">
-        <MessagePrimitive.Content />
+      <div className="max-w-[85%] rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] px-4 py-2 text-[var(--color-fg)]">
+        <MessagePrimitive.Content
+          components={{
+            Text: ({ text }) => <MarkdownMessage text={text} />,
+          }}
+        />
       </div>
     </MessagePrimitive.Root>
+  );
+}
+
+function TypingIndicator() {
+  return (
+    <div className="mx-auto flex w-full max-w-3xl py-3">
+      <div
+        className="inline-flex items-center gap-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] px-4 py-3"
+        aria-label="Assistant is typing"
+      >
+        <span className="dot" />
+        <span className="dot dot-2" />
+        <span className="dot dot-3" />
+      </div>
+    </div>
   );
 }
 
@@ -69,7 +93,7 @@ function Composer() {
           <button
             type="submit"
             aria-label="Send message"
-            className="inline-flex h-10 items-center justify-center rounded-md bg-[var(--color-green)] px-3 text-[var(--color-bg)] hover:bg-[var(--color-green-strong)]"
+            className="inline-flex h-10 items-center justify-center rounded-md bg-gradient-green px-3 text-[var(--color-bg)] shadow-[0_8px_20px_-10px_rgba(34,224,122,0.55)] hover:brightness-110"
           >
             <SendHorizonal className="h-4 w-4" />
           </button>

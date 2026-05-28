@@ -227,7 +227,7 @@ function TabButton({
       className={cn(
         "rounded-sm px-3 py-1 text-xs font-medium uppercase tracking-wider transition-colors",
         active
-          ? "bg-[var(--color-green)] text-[var(--color-bg)]"
+          ? "bg-gradient-green text-[var(--color-bg)] shadow-[0_4px_12px_-6px_rgba(34,224,122,0.6)]"
           : "text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
       )}
     >

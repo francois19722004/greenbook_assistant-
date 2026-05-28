@@ -12,7 +12,7 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-bg)]/95 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2">
-          <span className="block h-5 w-5 rounded-md bg-[var(--color-green)]" />
+          <span className="block h-5 w-5 rounded-md bg-gradient-green shadow-[0_0_18px_-4px_rgba(34,224,122,0.6)]" />
           <span className="font-display text-base font-semibold tracking-tight">
             Greenbook Assistant
           </span>

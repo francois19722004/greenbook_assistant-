@@ -17,7 +17,7 @@ export default function Dashboard() {
             Dashboard
           </span>
           <h1 className="font-display mt-2 text-4xl font-semibold tracking-tight">
-            All Green Book problems
+            All <span className="text-gradient-green">Green Book</span> problems
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-[var(--color-fg-muted)]">
             Click a problem to open a conversation with the assistant.
@@ -55,7 +55,7 @@ export default function Dashboard() {
                   >
                     <Link
                       to={`/chat/${p.id}`}
-                      className="flex h-full flex-col justify-between rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] p-4 transition-colors hover:border-[var(--color-green)]"
+                      className="ring-gradient-green hover-glow-green flex h-full flex-col justify-between rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] p-4 transition-colors"
                     >
                       <span className="font-display text-base font-medium text-[var(--color-fg)]">
                         {p.title || `Problem ${p.id}`}
