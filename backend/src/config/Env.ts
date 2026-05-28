@@ -6,7 +6,7 @@ const schema = z.object({
   CORS_ORIGIN: z.string().default("http://localhost:5173"),
   MISTRAL_API_KEY: z.string().default(""),
   MISTRAL_MODEL: z.string().default("mistral-small-latest"),
-  CSV_PATH: z.string().default("../greenbook problems/green_book_problems_rows.csv"),
+  CSV_PATH: z.string().default("./greenbook problems/green_book_problems_rows.csv"),
 });
 
 export type Env = z.infer<typeof schema>;
