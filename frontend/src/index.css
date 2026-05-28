@@ -219,7 +219,7 @@
 }
 
 .hero-loop-frame:hover .hero-loop-track {
-  animation-duration: 220s;
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
